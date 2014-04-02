@@ -22,9 +22,9 @@
  * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- ********************************************************************************/
+ ******************************************************************************/
 
-#include "CppUTest/SimpleString.h" /* For method StringFrom */
+#include "CppUTest/SimpleString.h"                          /* For StringFrom */
 #include "ByteWurst/ByteWurst.h"
 #include <stdlib.h>
 #include <string.h>
@@ -97,7 +97,7 @@ bool operator!= ( ByteWurst const& wurst1, ByteWurst const& wurst2 )
 SimpleString StringFrom ( ByteWurst const& byteWurst )
 {
 #define MAX_INPUT_SIZE 1536
-#define MAX_HEX_SIZE MAX_INPUT_SIZE * 2 + 2 + 3/* "0x" & "..." */
+#define MAX_HEX_SIZE MAX_INPUT_SIZE * 2 + 2 + 3               /* "0x" & "..." */
 #define BUFFER_SIZE MAX_HEX_SIZE + 1
     char string [ BUFFER_SIZE ];
     size_t written = 0;
@@ -110,8 +110,7 @@ SimpleString StringFrom ( ByteWurst const& byteWurst )
     unsigned char * bytes = (unsigned char *) poloni.Get();
     written = snprintf( string + offset, BUFFER_SIZE - offset, "0x" );
     offset = written;
-    for ( i = 0; i < length; i++ )
-    {
+    for ( i = 0; i < length; i++ ) {
         written = snprintf( string + offset,
             BUFFER_SIZE - offset, "%02X", bytes[i] );
         offset += written;
@@ -122,10 +121,6 @@ SimpleString StringFrom ( ByteWurst const& byteWurst )
     }
     return SimpleString ( string );
 }
-
-/**
- * private
- */
 
 void ByteWurst::Init ( size_t length )
 {
