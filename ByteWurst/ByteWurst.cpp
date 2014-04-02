@@ -61,7 +61,7 @@ void ByteWurst::Put( const void * const pBytes, size_t length )
         safe_length = mLength;
     }
 
-    memcpy( mBytes, pBytes, mLength );
+    memcpy( mBytes, pBytes, safe_length );
 }
 
 void * const ByteWurst::Get( void )
