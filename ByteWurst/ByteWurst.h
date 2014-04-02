@@ -22,16 +22,16 @@
  * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- ********************************************************************************/
+ ******************************************************************************/
 
 class ByteWurst {
     friend bool operator== ( ByteWurst const& wurst1, ByteWurst const& wurst2 );
     friend bool operator!= ( ByteWurst const& wurst1, ByteWurst const& wurst2 );
 public:
-    ByteWurst();                          // default constructor
-    ByteWurst( size_t length );                   // constructor
-    ByteWurst( ByteWurst const& byteWurst ); // copy constructor
-    ~ByteWurst();                                  // destructor
+    ByteWurst();
+    ByteWurst( size_t length );
+    ByteWurst( ByteWurst const& byteWurst );
+    ~ByteWurst();
     void * const Get ( void );
     void Put ( const void * const pBytes, size_t length );
     size_t Length ( void );

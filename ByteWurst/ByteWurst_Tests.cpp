@@ -22,7 +22,7 @@
  * ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
  * (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS
  * SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
- ********************************************************************************/
+ ******************************************************************************/
 
 #include "CppUTest/CommandLineTestRunner.h"
 #include "CppUTest/TestHarness.h"
@@ -34,9 +34,6 @@
 int main(int argc, char** argv)
 {
     return RUN_ALL_TESTS(argc, argv);
-}
-
-extern "C" {
 }
 
 TEST_GROUP( ByteWurst )
