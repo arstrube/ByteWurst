@@ -42,7 +42,6 @@ ByteWurst::ByteWurst ( size_t length )
 
 ByteWurst::ByteWurst( ByteWurst const& byteWurst) {
     Init ( byteWurst.mLength );
-    mLength = byteWurst.mLength;
     memcpy ( mBytes, byteWurst.mBytes, mLength );
 }
 
