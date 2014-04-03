@@ -26,9 +26,9 @@
 
 #include "CppUTest/SimpleString.h"                          /* For StringFrom */
 #include "ByteWurst/ByteWurst.h"
-#include <stdlib.h>
-#include <string.h>
-#include <stdio.h>
+#include <cstdlib>
+#include <cstring>
+#include <cstdio>
 
 ByteWurst::ByteWurst()
 {
