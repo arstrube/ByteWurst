@@ -30,71 +30,61 @@
 #include <cstring>
 #include <cstdio>
 
-ByteWurst::ByteWurst( ByteWurst const& byteWurst) {
+ByteWurst::ByteWurst (ByteWurst const& byteWurst) {
     mLength = byteWurst.mLength;
     mBytes = byteWurst.mBytes;
 }
 
-void ByteWurst::Put( const void * const pBytes, size_t length )
-{
+void ByteWurst::Put (const void * const pBytes, size_t length) {
     mBytes = static_cast<const unsigned char*>(pBytes);
     mLength = length;
 }
 
-const void * ByteWurst::Get( void )
-{
+const void * ByteWurst::Get (void) {
     return mBytes;
 }
 
-size_t ByteWurst::Length( void )
-{
+size_t ByteWurst::Length (void) {
     return mLength;
 }
 
-bool operator== ( ByteWurst const& wurst1, ByteWurst const& wurst2 )
-{
-    if ( &wurst1 == &wurst2 ) return true;
-
-    if ( wurst1.mLength != wurst2.mLength) return false;
-
+bool operator == (ByteWurst const& wurst1, ByteWurst const& wurst2) {
+    if (&wurst1 == &wurst2) return true;
+    if (wurst1.mLength != wurst2.mLength) return false;
     size_t length = wurst1.mLength;
-   	for ( size_t i = 0; i < length; i++ )
-   	{
-		if ( wurst1.mBytes[i] != wurst2.mBytes[i] ) return false;
+   	for (size_t i = 0; i < length; i++) {
+		if (wurst1.mBytes[i] != wurst2.mBytes[i]) return false;
    	}
-
     return true;
 }
 
-bool operator!= ( ByteWurst const& wurst1, ByteWurst const& wurst2 )
-{
-    return ! ( &wurst1 == &wurst2 );
+bool operator != (ByteWurst const& wurst1, ByteWurst const& wurst2) {
+    return ! (&wurst1 == &wurst2);
 }
 
-SimpleString StringFrom ( ByteWurst const& byteWurst )
-{
 #define MAX_INPUT_SIZE 1536
 #define MAX_HEX_SIZE MAX_INPUT_SIZE * 2 + 2 + 3               /* "0x" & "..." */
 #define BUFFER_SIZE MAX_HEX_SIZE + 1
-    char string [ BUFFER_SIZE ];
+
+SimpleString StringFrom (ByteWurst const& byteWurst) {
+    char string [BUFFER_SIZE];
     size_t written = 0;
     size_t offset = 0;
     size_t i;
 
-    ByteWurst poloni = byteWurst;
-    size_t length = poloni.Length();
-    if ( length > MAX_INPUT_SIZE ) length = MAX_INPUT_SIZE;
-    unsigned char * bytes = (unsigned char *) poloni.Get();
-    written = snprintf( string + offset, BUFFER_SIZE - offset, "0x" );
+    ByteWurst poloni (byteWurst);
+    size_t length = poloni.Length ();
+    if (length > MAX_INPUT_SIZE) length = MAX_INPUT_SIZE;
+    unsigned char * bytes = (unsigned char *) poloni.Get ();
+    written = snprintf (string + offset, BUFFER_SIZE - offset, "0x");
     offset = written;
-    for ( i = 0; i < length; i++ ) {
-        written = snprintf( string + offset,
-            BUFFER_SIZE - offset, "%02X", bytes[i] );
+    for (i = 0; i < length; i++) {
+        written = snprintf (string + offset, BUFFER_SIZE - offset, 
+                            "%02X", bytes[i]);
         offset += written;
     }
     if (i == MAX_INPUT_SIZE) {
-        written = snprintf( string + offset,
-            BUFFER_SIZE - offset, "..." );
+        written = snprintf (string + offset, BUFFER_SIZE - offset, "...");
     }
-    return SimpleString ( string );
+    return SimpleString (string);
 }
