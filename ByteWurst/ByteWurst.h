@@ -29,13 +29,13 @@ class ByteWurst {
     friend bool operator != (ByteWurst const& wurst1, ByteWurst const& wurst2);
 public:
     ByteWurst() : mLength(0), mBytes(NULL) {}
-    ByteWurst (ByteWurst const& byteWurst);
-    const void * Get (void);
-    void Put (const void * const pBytes, size_t length);
-    size_t Length (void);
+    ByteWurst(ByteWurst const& byteWurst);
+    const void * Get(void);
+    void Put(const void * const pBytes, size_t length);
+    size_t Length(void);
 private:
     size_t mLength;
     const unsigned char * mBytes;
 };
 
-SimpleString StringFrom (ByteWurst const& byteWurst);
+SimpleString StringFrom(ByteWurst const& byteWurst);
