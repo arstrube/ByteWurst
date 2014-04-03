@@ -31,23 +31,23 @@
 #include "CppUTest/SimpleString.h"
 #include "ByteWurst/ByteWurst.h"
 
-int main (int argc, char** argv) {
+int main(int argc, char** argv) {
     return RUN_ALL_TESTS(argc, argv);
 }
 
-TEST_GROUP (ByteWurst) {
+TEST_GROUP(ByteWurst) {
 };
 
-TEST (ByteWurst, StringFromOK) {
+TEST(ByteWurst, StringFromOK) {
     char bytes [] = "0123456789@ABCabcd";
     char expected [] = "0x30313233343536373839404142436162636400";
     ByteWurst byteWurst;
-    byteWurst.Put (bytes, sizeof( bytes) );
+    byteWurst.Put(bytes, sizeof( bytes) );
 
-    STRCMP_EQUAL( expected, StringFrom( byteWurst ).asCharString() );
+    STRCMP_EQUAL(expected, StringFrom(byteWurst).asCharString());
 }
 
-TEST (ByteWurst, OperatorEqualTrueOK) {
+TEST(ByteWurst, OperatorEqualTrueOK) {
     unsigned char bytes1 [7] = {
         0x00, 0x01,0x02,0x03,0x04,0x05,0x06
     };
@@ -56,23 +56,23 @@ TEST (ByteWurst, OperatorEqualTrueOK) {
     };
     ByteWurst salami;
     ByteWurst poloni;
-    salami.Put (bytes1, sizeof (bytes1));
-    poloni.Put (bytes2, sizeof (bytes2));
+    salami.Put(bytes1, sizeof(bytes1));
+    poloni.Put(bytes2, sizeof(bytes2));
 
-    CHECK_TRUE (salami == poloni);
+    CHECK_TRUE(salami == poloni);
 }
 
-TEST (ByteWurst, OperatorEqualTrueSameOK) {
+TEST(ByteWurst, OperatorEqualTrueSameOK) {
     unsigned char bytes [7] = {
         0x00, 0x01,0x02,0x03,0x04,0x05,0x06
     };
     ByteWurst salami;
-    salami.Put (bytes, sizeof (bytes));
+    salami.Put(bytes, sizeof(bytes));
     
-    CHECK_TRUE (salami == salami);
+    CHECK_TRUE(salami == salami);
 }
 
-TEST (ByteWurst, OperatorEqualFalseContentsOK) {
+TEST(ByteWurst, OperatorEqualFalseContentsOK) {
     unsigned char bytes1 [7] = {
         0x00, 0x01,0x02,0x03,0x04,0x05,0x06
     };
@@ -81,13 +81,13 @@ TEST (ByteWurst, OperatorEqualFalseContentsOK) {
     };
     ByteWurst salami;
     ByteWurst poloni;
-    salami.Put (bytes1, sizeof (bytes1));
-    poloni.Put (bytes2, sizeof (bytes2));
+    salami.Put(bytes1, sizeof(bytes1));
+    poloni.Put(bytes2, sizeof(bytes2));
 
-    CHECK_FALSE (salami == poloni);
+    CHECK_FALSE(salami == poloni);
 }
 
-TEST (ByteWurst, OperatorEqualFalseSizeOK) {
+TEST(ByteWurst, OperatorEqualFalseSizeOK) {
     unsigned char bytes1 [8] = {
         0x00, 0x01,0x02,0x03,0x04,0x05,0x06,0x07
     };
@@ -96,36 +96,36 @@ TEST (ByteWurst, OperatorEqualFalseSizeOK) {
     };
     ByteWurst salami;
     ByteWurst poloni;
-    salami.Put (bytes1, sizeof (bytes1));
-    poloni.Put (bytes2, sizeof (bytes2));
+    salami.Put(bytes1, sizeof(bytes1));
+    poloni.Put(bytes2, sizeof(bytes2));
 
-    CHECK_FALSE (salami == poloni);
+    CHECK_FALSE(salami == poloni);
 }
 
-TEST (ByteWurst, PutAndGetSizedOK) {
+TEST(ByteWurst, PutAndGetSizedOK) {
     char expected[] = "This is a salami";
     ByteWurst actual;
-    actual.Put (expected, sizeof (expected));
+    actual.Put(expected, sizeof(expected));
 
-    LONGS_EQUAL (sizeof (expected), actual.Length());
-    STRCMP_EQUAL (expected, (char * const) actual.Get());
+    LONGS_EQUAL(sizeof(expected), actual.Length());
+    STRCMP_EQUAL(expected, static_cast<const char *>(actual.Get()));
 }
 
-TEST (ByteWurst, PutAndGetDefaultOK) {
+TEST(ByteWurst, PutAndGetDefaultOK) {
     char expected = 'X';
-    ByteWurst * actual = new ByteWurst ();
-    CHECK_TRUE (NULL != actual);
-    actual->Put (&expected, 1);
+    ByteWurst * actual = new ByteWurst();
+    CHECK_TRUE(NULL != actual);
+    actual->Put(&expected, 1);
     
-    BYTES_EQUAL (expected, * (char *) actual->Get ())
+    BYTES_EQUAL(expected, * static_cast<const char *>(actual->Get()))
     
     delete actual;
 }
 
-TEST (ByteWurst, CreateDefaultOK) {
-    ByteWurst * actual = new ByteWurst ();
+TEST(ByteWurst, CreateDefaultOK) {
+    ByteWurst * actual = new ByteWurst();
     
-    CHECK_TRUE (NULL != actual);
+    CHECK_TRUE(NULL != actual);
 
     delete actual;
 }
