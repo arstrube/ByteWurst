@@ -30,40 +30,18 @@
 #include <cstring>
 #include <cstdio>
 
-ByteWurst::ByteWurst()
-{
-    Init( 1 );
-}
-
-ByteWurst::ByteWurst ( size_t length )
-{
-    Init ( length );
-}
-
 ByteWurst::ByteWurst( ByteWurst const& byteWurst) {
-    Init ( byteWurst.mLength );
-    memcpy ( mBytes, byteWurst.mBytes, mLength );
-}
-
-ByteWurst::~ByteWurst ()
-{
-    delete[] mBytes;
-    mBytes = NULL;
+    mLength = byteWurst.mLength;
+    mBytes = byteWurst.mBytes;
 }
 
 void ByteWurst::Put( const void * const pBytes, size_t length )
 {
-    size_t safe_length = length;
-
-    if ( safe_length > mLength )
-    {
-        safe_length = mLength;
-    }
-
-    memcpy( mBytes, pBytes, safe_length );
+    mBytes = static_cast<const unsigned char*>(pBytes);
+    mLength = length;
 }
 
-const void * ByteWurst::Get( void ) const
+const void * ByteWurst::Get( void )
 {
     return mBytes;
 }
@@ -119,10 +97,4 @@ SimpleString StringFrom ( ByteWurst const& byteWurst )
             BUFFER_SIZE - offset, "..." );
     }
     return SimpleString ( string );
-}
-
-void ByteWurst::Init ( size_t length )
-{
-    mBytes = new unsigned char [length];
-    mLength = length;
 }

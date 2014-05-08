@@ -51,7 +51,7 @@ TEST( ByteWurst, StringFromOK )
 {
     char bytes [] = "0123456789@ABCabcd";
     char expected [] = "0x30313233343536373839404142436162636400";
-    ByteWurst byteWurst ( sizeof( bytes) );
+    ByteWurst byteWurst;
     byteWurst.Put (bytes, sizeof( bytes) );
 
     STRCMP_EQUAL( expected, StringFrom( byteWurst ).asCharString() );
@@ -65,8 +65,8 @@ TEST( ByteWurst, OperatorEqualTrueOK )
     unsigned char bytes2 [7] = {
         0x00, 0x01,0x02,0x03,0x04,0x05,0x06
     };
-    ByteWurst salami ( sizeof( bytes1 ) );
-    ByteWurst poloni ( sizeof( bytes2 ) );
+    ByteWurst salami;
+    ByteWurst poloni;
     salami.Put( bytes1, sizeof( bytes1 ) );
     poloni.Put( bytes2, sizeof( bytes2 ) );
 
@@ -78,7 +78,7 @@ TEST( ByteWurst, OperatorEqualTrueSameOK )
     unsigned char bytes [7] = {
         0x00, 0x01,0x02,0x03,0x04,0x05,0x06
     };
-    ByteWurst salami ( sizeof( bytes ) );
+    ByteWurst salami;
     salami.Put( bytes, sizeof( bytes ) );
 
     CHECK_TRUE ( salami == salami );
@@ -92,8 +92,8 @@ TEST( ByteWurst, OperatorEqualFalseContentsOK )
     unsigned char bytes2 [7] = {
         0x00, 0x01,0x32,0x03,0x04,0x05,0x06
     };
-    ByteWurst salami ( sizeof( bytes1 ) );
-    ByteWurst poloni ( sizeof( bytes2 ) );
+    ByteWurst salami;
+    ByteWurst poloni;
     salami.Put( bytes1, sizeof( bytes1 ) );
     poloni.Put( bytes2, sizeof( bytes2 ) );
 
@@ -108,8 +108,8 @@ TEST( ByteWurst, OperatorEqualFalseSizeOK )
     unsigned char bytes2 [7] = {
         0x00, 0x01,0x02,0x03,0x04,0x05,0x06
     };
-    ByteWurst salami ( sizeof( bytes1 ) );
-    ByteWurst poloni ( sizeof( bytes2 ) );
+    ByteWurst salami;
+    ByteWurst poloni;
     salami.Put( bytes1, sizeof( bytes1 ) );
     poloni.Put( bytes2, sizeof( bytes2 ) );
 
@@ -119,7 +119,7 @@ TEST( ByteWurst, OperatorEqualFalseSizeOK )
 TEST( ByteWurst, PutAndGetSizedOK )
 {
     char expected[] = "This is a salami";
-    ByteWurst actual( sizeof( expected ) );
+    ByteWurst actual;
     actual.Put( expected, sizeof( expected ) );
 
     LONGS_EQUAL( sizeof( expected ), actual.Length() );
@@ -143,14 +143,3 @@ TEST( ByteWurst, CreateDefaultOK )
 
     delete actual;
 }
-
-TEST( ByteWurst, IncorrectSizeHandledOK )
-{
-    char buff1[] = "000000";
-    char buff2[] = "111111";
-    ByteWurst test(sizeof(buff1));
-    test.Put(buff1, sizeof(buff1));
-    test.Put(buff2, 3);
-    STRCMP_EQUAL("0x31313130303000", StringFrom(test).asCharString())
-}
-

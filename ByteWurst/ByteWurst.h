@@ -25,21 +25,17 @@
  ******************************************************************************/
 
 class ByteWurst {
-    friend bool operator== ( ByteWurst const& wurst1, ByteWurst const& wurst2 );
-    friend bool operator!= ( ByteWurst const& wurst1, ByteWurst const& wurst2 );
+    friend bool operator == ( ByteWurst const& wurst1, ByteWurst const& wurst2 );
+    friend bool operator != ( ByteWurst const& wurst1, ByteWurst const& wurst2 );
 public:
-    ByteWurst();
-    ByteWurst( size_t length );
+    ByteWurst() : mLength(0), mBytes(NULL) {}
     ByteWurst( ByteWurst const& byteWurst );
-    ~ByteWurst();
-    const void * Get ( void ) const;
+    const void * Get ( void );
     void Put ( const void * const pBytes, size_t length );
     size_t Length ( void );
-protected:
-    size_t mLength;
-    unsigned char * mBytes;
 private:
-    void Init( size_t length );
+    size_t mLength;
+    const unsigned char * mBytes;
 };
 
 SimpleString StringFrom( ByteWurst const& byteWurst );
