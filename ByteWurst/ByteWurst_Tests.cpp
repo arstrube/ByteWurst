@@ -147,3 +147,13 @@ TEST( ByteWurst, CreateDefaultOK )
     delete actual;
 }
 
+TEST( ByteWurst, IncorrectSizeHandledOK )
+{
+    char buff1[] = "000000";
+    char buff2[] = "111111";
+    ByteWurst test(sizeof(buff1));
+    test.Put(buff1, sizeof(buff1));
+    test.Put(buff2, 3);
+    STRCMP_EQUAL("0x31313130303000", StringFrom(test).asCharString())
+}
+
