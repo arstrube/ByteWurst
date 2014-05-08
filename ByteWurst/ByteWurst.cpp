@@ -64,7 +64,7 @@ void ByteWurst::Put( const void * const pBytes, size_t length )
     memcpy( mBytes, pBytes, safe_length );
 }
 
-void * const ByteWurst::Get( void )
+const void * ByteWurst::Get( void ) const
 {
     return mBytes;
 }

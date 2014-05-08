@@ -32,7 +32,7 @@ public:
     ByteWurst( size_t length );
     ByteWurst( ByteWurst const& byteWurst );
     ~ByteWurst();
-    void * const Get ( void );
+    const void * Get ( void ) const;
     void Put ( const void * const pBytes, size_t length );
     size_t Length ( void );
 protected:
