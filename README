@@ -1,0 +1,29 @@
+WRAPPER-OBJECT FOR TESTING STRUCTURED BYTE ARRAYS WITH CPPUTEST
+
+Sometimes, byte arrays are abused for holding all kinds of
+structured data. (This data is "stuffed" into the array like meat
+into a saucage, hence the name).
+
+ByteWurst can be used as a wrapper around such data, providing
+the ability to compare these kinds of arrays, and give the most
+sensible feedback possible when they are different.
+
+In this case, that would be hex strings.
+
+See ByteWurst_Tests.cpp for examples how to use.
+
+ByteWurst.h         - ByteWurst declarations
+ByteWurst.cpp       - ByteWurst implementation. Note that there 
+                      is a fixed size of 1536 bytes for the maximum 
+                      string length  that will be displayed. This 
+                      should be more than enough, since longer hex 
+                      strings would be difficult to tell apart. If 
+                      needed, you can adjust MAX_INPUT_SIZE.
+ByteWurst_Tests.cpp - Unit tests that test-drive all of the above 
+                      and demonstrate how to use it.
+
+No guarantees for usefulness or anything! Use at your own risk. 
+
+Feedback welcome.
+
+(c) 2014 Arnd R. Strube
