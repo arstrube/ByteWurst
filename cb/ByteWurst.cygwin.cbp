@@ -31,25 +31,18 @@
 			<Add option="-Wall" />
 			<Add option="-g" />
 			<Add option="-Werror" />
-			<Add option="-include MemoryLeakDetectorNewMacros.h" />
+			<Add option="-include CppUTest/MemoryLeakDetectorNewMacros.h" />
+			<Add directory="E:\CppUTest\include" />
 			<Add directory=".." />
-			<Add directory="..\CppUTest\include\CppUTest" />
-			<Add directory="..\CppUTest\include\CppUTestExt" />
-			<Add directory="..\fakes" />
-			<Add directory="..\StorageAdapter" />
-			<Add directory="..\Settings" />
-			<Add directory="..\SettingsFactory" />
-			<Add directory="..\..\system" />
 		</Compiler>
 		<Linker>
-			<Add library="..\..\unittest\CppUTest\lib\libCppUTestExt.a" />
-			<Add library="..\..\unittest\CppUTest\lib\libCppUTest.a" />
+			<Add library="CppUTest" />
+			<Add library="CppUTestExt" />
+			<Add directory="E:\CppUTest\lib" />
 		</Linker>
 		<Unit filename="..\ByteWurst\ByteWurst.cpp" />
 		<Unit filename="..\ByteWurst\ByteWurst.h" />
 		<Unit filename="..\ByteWurst\ByteWurst_Tests.cpp" />
-		<Unit filename="..\UnitTest.cpp" />
-		<Unit filename="..\fakes\FormatOutputSpy.h" />
 		<Extensions>
 			<code_completion />
 			<debugger />
